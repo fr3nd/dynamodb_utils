@@ -88,7 +88,7 @@ def main(host, region, table_name, total_segments, hash_keys, compress, parallel
     total_items = desc['ItemCount']
 
     total_capacity = desc[PROVISIONED_THROUGHPUT][READ_CAPACITY_UNITS]
-    capacity_per_process = max(
+    capacity_per_process = min(
         1.0,
         (capacity_consumption * total_capacity) / float(parallelism)
     )
